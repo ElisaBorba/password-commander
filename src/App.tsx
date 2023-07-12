@@ -5,13 +5,21 @@ import Form from './components/Form';
 
 function App() {
   const [showForm, setShowForm] = useState(false);
+  const [showBtn, setShowBtn] = useState(true);
+
+  const handleClick = () => {
+    setShowForm(true);
+    setShowBtn(false);
+  };
 
 
   return (
   <div>
     <header>
       <Title />
-      <button onClick={ () => setShowForm(true) }>Cadastrar nova senha</button>
+      {showBtn && (
+        <button onClick={handleClick}>Cadastrar nova senha</button>
+      )}
       </header>
       { showForm && <Form /> }
       </div>
