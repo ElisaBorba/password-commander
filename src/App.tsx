@@ -12,17 +12,21 @@ function App() {
     setShowBtn(false);
   };
 
+  const handleHideForm = () => {
+    setShowBtn(true);
+    setShowForm(false);
+  };
 
   return (
-  <div>
-    <header>
-      <Title />
-      {showBtn && (
-        <button onClick={handleClick}>Cadastrar nova senha</button>
-      )}
+    <div>
+      <header>
+        <Title />
+        {showBtn && (
+          <button onClick={ handleClick }>Cadastrar nova senha</button>
+        )}
       </header>
-      { showForm && <Form /> }
-      </div>
+      { showForm && <Form hideForm={ handleHideForm } /> }
+    </div>
   );
 }
 
