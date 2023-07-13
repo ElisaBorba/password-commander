@@ -37,22 +37,22 @@ console.log(formValues)
   return (
     <form onSubmit={ onSubmit }>
       <label htmlFor="Nome do serviço">
-        Nome do serviço:
-        <input type="text" name="serviceName" value={ serviceName } onChange={ onChange } required />
+        Nome do serviço
+        <input type="text" id="Nome do serviço" name="serviceName" value={ serviceName } onChange={ onChange } required />
       </label>
       <label htmlFor="Login">
-        Login:
-        <input type="text" name="login" value={ login } onChange={ onChange } required />
+        Login
+        <input type="text" id="Login" name="login" value={ login } onChange={ onChange } required />
       </label>
-      <label htmlFor="input-password">
-        Senha:
-        <input type="password" name="password" value={ password } onChange={ onChange }required />
+      <label htmlFor="Senha">
+        Senha
+        <input type="password" id="Senha" name="password" value={ password } onChange={ onChange }required />
       </label>
-      <label htmlFor="URL">
-        URL:
-        <input type="text" name="url" value={ url } onChange={ onChange } />
+      <label htmlFor="url">
+        URL
+        <input type="text" id="url" name="url" value={ url } onChange={ onChange } />
       </label>
-      <button type="submit">
+      <button type="submit" disabled={!validateForm()}>
         Cadastrar
       </button>
       <button onClick={ handleClose }>Cancelar</button>
@@ -61,5 +61,3 @@ console.log(formValues)
 }
 
 export default Form;
-
-// disabled={!validateForm()

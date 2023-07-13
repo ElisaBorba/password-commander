@@ -34,7 +34,7 @@ function App() {
 
   function validateForm(): boolean {
     const { serviceName, login, password } = formValues;
-    const regexPassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).{8,16}$/;
+    const regexPassword = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?])[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{8,16}$/;
     
     if (!serviceName) {
       return false
@@ -42,9 +42,10 @@ function App() {
     if (!login) {
       return false
     }
-    if (!regexPassword.test(password)) {
+    if (typeof password !== 'string' || !regexPassword.test(password)) {
       return false;
     }
+    return true;
   }
 
   return (
