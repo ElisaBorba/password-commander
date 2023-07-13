@@ -10,7 +10,7 @@ export type FormValuesType = {
   url?: string,
 };
 
-const initialFormValues = {
+const INITIAL_FORM_STATE = {
   serviceName: '',
   login: '',
   password: '',
@@ -20,7 +20,7 @@ const initialFormValues = {
 function App() {
   const [showForm, setShowForm] = useState(false);
   const [showBtn, setShowBtn] = useState(true);
-  const [formValues, setFormValues] = useState<FormValuesType>(initialFormValues);
+  const [formValues, setFormValues] = useState<FormValuesType>(INITIAL_FORM_STATE);
 
     const handleClick = () => {
     setShowForm(true);
@@ -56,7 +56,12 @@ function App() {
           <button onClick={ handleClick }>Cadastrar nova senha</button>
         )}
       </header>
-      { showForm && <Form hideForm={ handleHideForm } setFormValues={ setFormValues } formValues={ formValues } validateForm={ validateForm } /> }
+      { showForm && <Form
+      hideForm={ handleHideForm }
+      setFormValues={ setFormValues }
+      formValues={ formValues }
+      validateForm={ validateForm }
+      /> }
     </div>
   );
 }
