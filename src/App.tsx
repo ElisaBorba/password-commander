@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import Title from './components/Title';
 import Form from './components/Form';
+import FormResult from './components/FormResult';
 
 export type FormValuesType = {
   serviceName?: string,
@@ -21,15 +22,28 @@ function App() {
   const [showForm, setShowForm] = useState(false);
   const [showBtn, setShowBtn] = useState(true);
   const [formValues, setFormValues] = useState<FormValuesType>(INITIAL_FORM_STATE);
+  const [formValuesSubmited, setFormValuesSubmited] = useState<FormValuesType[]>([]);
+  const [submited, setSubmited] = useState(false);
 
-    const handleClick = () => {
+  const handleClick = () => {
     setShowForm(true);
     setShowBtn(false);
+    setSubmited(false);
   };
 
   const handleHideForm = () => {
     setShowBtn(true);
     setShowForm(false);
+  };
+
+  const handleSubmit = () => {
+    if (validateForm()) {
+      setFormValuesSubmited([...formValuesSubmited, formValues])
+      setFormValues(INITIAL_FORM_STATE);
+      setSubmited(true);
+      setShowForm(false);
+      setShowBtn(true);
+    }
   };
 
   function validateForm(): boolean {
@@ -52,16 +66,29 @@ function App() {
     <div>
       <header>
         <Title />
-        {showBtn && (
+        {showBtn && !submited && (
           <button onClick={ handleClick }>Cadastrar nova senha</button>
         )}
       </header>
-      { showForm && <Form
-      hideForm={ handleHideForm }
-      setFormValues={ setFormValues }
-      formValues={ formValues }
-      validateForm={ validateForm }
-      /> }
+      {showForm && !submited && (
+        <Form
+          hideForm={ handleHideForm }
+          setFormValues={ setFormValues }
+          formValues={formValues}
+          validateForm={ validateForm }
+          handleSubmit={ handleSubmit }
+        />
+      )}
+      {submited && (
+        <>
+          <FormResult formValuesSubmited={formValuesSubmited} />
+          <button onClick={ handleClick }>Cadastrar nova senha</button>
+        </>
+      )}
+
+      {!submited && formValuesSubmited.length === 0 && (
+        <p>Nenhuma senha cadastrada</p>
+      )}
     </div>
   );
 }

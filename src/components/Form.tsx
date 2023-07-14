@@ -27,8 +27,7 @@ function Form(props: FormProps) {
   };
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = event;
-    const { name, value } = target;
+    const { name, value } = event.target;
     setFormValues({
       ...formValues,
       [name]: value,
