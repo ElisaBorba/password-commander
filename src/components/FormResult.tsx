@@ -1,28 +1,42 @@
 import React from 'react';
-import { FormValuesType } from '../App';
+import { v4 as uuidv4 } from 'uuid';
+import { FormValuesType } from '../types/types';
 
 type FormResultProps = {
-  formValuesSubmited: FormValuesType[];
+  formValuesSubmitted: FormValuesType[];
+  handleDelete: (id: string) => void;
 };
 
-const FormResult: React.FC<FormResultProps> = ({ formValuesSubmited }) => {
-  const sortedFormValues = formValuesSubmited.sort((a, b) => {
-    return formValuesSubmited.indexOf(a) - formValuesSubmited.indexOf(b);
-  });
+function FormResult({ formValuesSubmitted, handleDelete }: FormResultProps) {
+  const handleRemove = (id: string) => {
+    handleDelete(id);
+  };
 
   return (
     <div>
-      {sortedFormValues.map((formValue, index) => (
-        <div key={index}>
-          <p>
-            <a href={formValue.url}>{formValue.serviceName}</a>
-          </p>
-          <p>Login: {formValue.login}</p>
-          <p>Senha: {formValue.password}</p>
-        </div>
-      ))}
+      {formValuesSubmitted.length > 0 ? (
+        formValuesSubmitted.map((formValue) => {
+          const { id, serviceName, login, password, url } = formValue;
+          const formId = id || uuidv4();
+          console.log(formId);
+          return (
+            <div key={ formId }>
+              <p>
+                <a href={ url }>{serviceName}</a>
+              </p>
+              <p>{login}</p>
+              <p>{password}</p>
+              <button data-testid="remove-btn" onClick={ () => handleRemove(formId) }>
+                Remover senha
+              </button>
+            </div>
+          );
+        })
+      ) : (
+        <p>Nenhuma senha cadastrada</p>
+      )}
     </div>
   );
-};
+}
 
 export default FormResult;

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FormValuesType } from '../App';
+import React from 'react';
+import { FormValuesType } from '../types/types';
 
 type FormProps = {
   formValues: FormValuesType,
@@ -12,7 +12,7 @@ type FormProps = {
 function Form(props: FormProps) {
   const { handleSubmit, hideForm, validateForm, formValues, setFormValues } = props;
   const { serviceName, login, password, url } = formValues;
-  const [passwordValidation, setPasswordValidation] = useState<string>('');
+
   const numberRegex = /\d/;
   const letterRegex = /[a-zA-Z]/;
   const specialCharRegex = /[!@#$%^&*(),.?":{}|<>]/;
@@ -31,27 +31,25 @@ function Form(props: FormProps) {
     setFormValues({
       ...formValues,
       [name]: value,
-
     });
-    setPasswordValidation(event.target.value);
     validatePassword();
   };
 
   const validatePassword = () => {
-
-    const password = passwordValidation;
     let valid = true;
 
-    if (password.length < 8 || password.length > 16) {
+    if ((password ?? '').length < 8 || (password ?? '').length > 16) {
       valid = false;
     }
-    if (!numberRegex.test(password) || !letterRegex.test(password)) {
+    if (
+      !(numberRegex.test(password ?? '') && letterRegex.test(password ?? ''))
+    ) {
       valid = false;
     }
-    if (!specialCharRegex.test(password)) {
+    if (!specialCharRegex.test(password ?? '')) {
       valid = false;
     }
-    valid;
+    return valid;
   };
 
   return (
@@ -84,29 +82,58 @@ function Form(props: FormProps) {
           type="password"
           id="Senha"
           name="password"
-          value={ password }
+          value={ password ?? '' }
           onChange={ onChange }
           required
         />
-        {passwordValidation.length < 8 && <p className={'invalid-password-check'}>Possuir 8 ou mais caracteres</p>}
-        {passwordValidation.length >= 8 && <p className={'valid-password-check'}>Possuir 8 ou mais caracteres</p>}
-        {passwordValidation.length <= 16 && <p className={'valid-password-check'}>Possuir até 16 caracteres</p>}
-        {passwordValidation.length > 16 && <p className={'invalid-password-check'}>Possuir até 16 caracteres</p>}        
-        {!(numberRegex.test(passwordValidation) && letterRegex.test(passwordValidation)) && <p className={'invalid-password-check'}>Possuir letras e números</p>}
-        {(numberRegex.test(passwordValidation) && letterRegex.test(passwordValidation)) && <p className={'valid-password-check'}>Possuir letras e números</p>}
-        {!specialCharRegex.test(passwordValidation) && <p className={'invalid-password-check'}>Possuir algum caractere especial</p>}
-        {specialCharRegex.test(passwordValidation) && <p className={'valid-password-check'}>Possuir algum caractere especial</p>}      
+        <div>
+          {(password ?? '').length < 8 ? (
+            <p className="invalid-password-check">
+              Possuir 8 ou mais caracteres
+            </p>
+          ) : (
+            <p className="valid-password-check">
+              Possuir 8 ou mais caracteres
+            </p>
+          )}
+
+          {(password ?? '').length <= 16 ? (
+            <p className="valid-password-check">
+              Possuir até 16 caracteres
+            </p>
+          ) : (
+            <p className="invalid-password-check">
+              Possuir até 16 caracteres
+            </p>
+          )}
+
+          {!(
+            numberRegex.test(password ?? '')
+            && letterRegex.test(password ?? '')
+          ) ? (
+            <p className="invalid-password-check">
+              Possuir letras e números
+            </p>
+            ) : (
+              <p className="valid-password-check">
+                Possuir letras e números
+              </p>
+            )}
+          {!specialCharRegex.test(password ?? '') ? (
+            <p className="invalid-password-check">
+              Possuir algum caractere especial
+            </p>
+          ) : (
+            <p className="valid-password-check">
+              Possuir algum caractere especial
+            </p>
+          )}
+        </div>
       </label>
       <label htmlFor="url">
         URL
-        <input
-          type="text"
-          id="url"
-          name="url"
-          value={ url }
-          onChange={ onChange }
-        />
-      </label>    
+        <input type="text" id="url" name="url" value={ url } onChange={ onChange } />
+      </label>
       <button type="submit" disabled={ !validateForm() }>
         Cadastrar
       </button>
