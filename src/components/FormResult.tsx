@@ -1,5 +1,4 @@
 import React from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { FormValuesType } from '../types/types';
 
 type FormResultProps = {
@@ -17,16 +16,18 @@ function FormResult({ formValuesSubmitted, handleDelete }: FormResultProps) {
       {formValuesSubmitted.length > 0 ? (
         formValuesSubmitted.map((formValue) => {
           const { id, serviceName, login, password, url } = formValue;
-          const formId = id || uuidv4();
-          console.log(formId);
+
           return (
-            <div key={ formId }>
+            <div key={ id }>
               <p>
                 <a href={ url }>{serviceName}</a>
               </p>
               <p>{login}</p>
               <p>{password}</p>
-              <button data-testid="remove-btn" onClick={ () => handleRemove(formId) }>
+              <button
+                data-testid="remove-btn"
+                onClick={ () => handleRemove(String(id)) }
+              >
                 Remover senha
               </button>
             </div>
