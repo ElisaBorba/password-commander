@@ -1,11 +1,35 @@
-body {
+@import url('https://fonts.cdnfonts.com/css/sunday-pasta');
+
+header {
+  align-items: center;
   background-color: white;
+  border-radius: 15px;
+  color: var(--purple);
+  display: flex;
+  flex-direction: column;
+  font-family: Sunday Pasta , sans-serif;
+  justify-content: center;
+  padding: 20px;
 }
 
 .valid-password-check {
-  color: #03e41a;
+  color: #099e18;
 }
 
 .invalid-password-check {
   color: #d31111;
 }
+
+.app-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+}
+
+.header-background {
+  background-color: var(--purple);
+  color: white;
+}
+

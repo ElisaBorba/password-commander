@@ -17,15 +17,18 @@ function App() {
   const [showBtn, setShowBtn] = useState(true);
   const [formValues, setFormValues] = useState<FormValuesType>(INITIAL_FORM_STATE);
   const [formValuesSubmited, setFormValuesSubmited] = useState<FormValuesType[]>([]);
+  const [buttonClicked, setButtonClicked] = useState(false);
 
   const handleClick = () => {
     setShowForm(true);
     setShowBtn(false);
+    setButtonClicked(true);
   };
 
   const handleHideForm = () => {
     setShowBtn(true);
     setShowForm(false);
+    setButtonClicked(false);
   };
 
   const handleSubmit = () => {
@@ -36,6 +39,7 @@ function App() {
       setFormValues(INITIAL_FORM_STATE);
       setShowForm(false);
       setShowBtn(true);
+      setButtonClicked(false);
     }
   };
 
@@ -52,8 +56,9 @@ function App() {
   }
 
   return (
-    <div>
-      <header>
+    <div className="app-container">
+      <header className={ `header ${buttonClicked ? 'header-background' : ''}` }>
+        {' '}
         <Title />
         {showBtn && (
           <button onClick={ handleClick }>Cadastrar nova senha</button>

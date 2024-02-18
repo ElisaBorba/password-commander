@@ -1,0 +1,65 @@
+form {
+  background: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 5vh;
+  padding: 30px;
+  width: 80vw;
+}
+
+form p::selection, form label::selection, form input::selection {
+  background-color: var(--purple-100);
+  color: white;
+}
+
+
+input {
+  border: 1px solid var(--purple);
+  border-radius: 10px;
+  font-size: large;
+  margin: 8px 0;
+  padding: 10px;
+  width: 75vw;
+}
+
+button {
+  align-self: center;
+  background-color: var(--purple);
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  margin: 8px 0;
+  padding: 14px 20px;
+  width: 50vw;
+}
+
+button:hover {
+  background-color: var(--purple-100);
+}
+
+.validations {
+  text-align: center;
+}
+
+@media ( min-width : 1080px ) {
+
+  .form {
+    width: 60vw;
+  }
+
+  .form input {
+    width: calc(100% - 20px);
+  }
+
+  .form label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .form button {
+    width: calc(50% - 20px);
+  }
+}

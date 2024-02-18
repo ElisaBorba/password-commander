@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormValuesType } from '../types/types';
+import styles from './Form.module.css';
 
 type FormProps = {
   formValues: FormValuesType,
@@ -53,7 +54,7 @@ function Form(props: FormProps) {
   };
 
   return (
-    <form onSubmit={ onSubmit }>
+    <form className={ styles.form } onSubmit={ onSubmit }>
       <label htmlFor="Nome do serviço">
         Nome do serviço
         <input
@@ -86,7 +87,7 @@ function Form(props: FormProps) {
           onChange={ onChange }
           required
         />
-        <div>
+        <div className={ styles.validations }>
           {(password ?? '').length < 8 ? (
             <p className="invalid-password-check">
               Possuir 8 ou mais caracteres
