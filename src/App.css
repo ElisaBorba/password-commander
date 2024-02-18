@@ -2,8 +2,8 @@
 
 header {
   align-items: center;
-  background-color: white;
-  border-radius: 15px;
+  background-color: var(--white);
+  border-radius: var(--border-radius);
   color: var(--purple);
   display: flex;
   flex-direction: column;
@@ -12,24 +12,53 @@ header {
   padding: 20px;
 }
 
+header h1::selection {
+  background-color: var(--purple-200);
+}
+
+button {
+  align-self: center;
+  background-color: var(--purple-100);
+  border: none;
+  border-radius: 10px;
+  color: var(--white);
+  cursor: pointer;
+  font-weight: 600;
+  margin: 8px 0;
+  padding: 14px 20px;
+}
+
+button:hover {
+  background-color: var(--purple-200);
+}
+
 .valid-password-check {
-  color: #099e18;
+  color: var(--green);
 }
 
 .invalid-password-check {
-  color: #d31111;
+  color: var(--red);
 }
 
 .app-container {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 100vh;
   justify-content: center;
+  margin-top: 240px;
+}
+
+.margin-top-small {
+  margin-top: 10px;
 }
 
 .header-background {
+  align-items: center;
   background-color: var(--purple);
-  color: white;
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 10px;
 }
 

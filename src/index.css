@@ -1,23 +1,19 @@
 :root {
   --white: white;
 
+  --red: #d31111;
+
+  --green: #099e18;
+
   --black: black;
-  
-  --background: white;
-  
+    
   --purple:  rgb(177, 154, 177);
 
-  --purple-100: rgb(148, 81, 187);
+  --purple-100: rgb(163, 135, 179);
 
-  --gray: #797D86;
+  --purple-200: rgb(148, 81, 187);
 
-  --gray-100: #d8d8d8;
-
-  --gray-200: #584F4F;
-
-  --box-shadow: 0px 5px 10px 0px rgb(201, 192, 192);
-
-  --input-border: 0.5px solid #41197F
+  --border-radius: 15px;
 }
 
 body {

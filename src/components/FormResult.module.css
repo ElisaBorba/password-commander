@@ -1,0 +1,60 @@
+@import url('https://fonts.cdnfonts.com/css/super-salad');
+
+.note {
+  color: var(--white);
+  font-weight: 700;
+}
+
+.checkbox {
+  align-items: center;
+  font-family: Super Salad , sans-serif;
+  font-size: 20px;
+  justify-content: space-between;
+  letter-spacing: 4px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.checkbox [ type = 'checkbox' ] {
+  display: none;
+}
+
+.checkbox img {
+  cursor: pointer;
+  height: 25px;
+  margin-left: 10px;
+  width: 25px;
+}
+
+.passwordsContainer {
+  align-items: center;
+  display: flex;
+  flex-flow: wrap;
+  flex-direction: row;
+  flex-grow: 1;
+  justify-content: center;
+  text-align: center;
+}
+
+.passwordsCards {
+  align-items: center;
+  background-color: var(--white);
+  border-bottom: none;
+  border-radius: var(--border-radius);
+  display: flex;
+  flex-flow: column;
+  height: 200px;
+  margin: 20px 5px;
+  padding: 20px;
+  text-decoration: none;
+}
+
+.passwordsCards a {
+  color: var(--purple-200);
+  text-decoration: none;
+}
+
+.note::selection, .passwordsCards p::selection, .passwordsCards a::selection {
+  background-color: var(--purple-200);
+  color: var(--white);
+}
