@@ -1,11 +1,11 @@
 body {
-  background-color: rgb(175, 164, 184);
+  background-color: white;
 }
 
 .valid-password-check {
-  color: #aeffb6;
+  color: #03e41a;
 }
 
 .invalid-password-check {
-  color: #f58989;
+  color: #d31111;
 }
