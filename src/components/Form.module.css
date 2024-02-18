@@ -3,10 +3,11 @@ form {
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  margin-bottom: 5vh;
+  margin-bottom: 10px;
   padding: 30px;
   width: 80vw;
 }
+
 
 form p::selection, form label::selection, form input::selection {
   background-color: var(--purple-100);
