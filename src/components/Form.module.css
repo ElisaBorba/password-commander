@@ -1,20 +1,21 @@
-form {
-  background: white;
-  border-radius: 10px;
+.form {
+  background: var(--white);
+  border-radius: var(--border-radius);
   display: flex;
   flex-direction: column;
-  margin-bottom: 5vh;
+  margin-bottom: 10px;
   padding: 30px;
   width: 80vw;
 }
 
-form p::selection, form label::selection, form input::selection {
-  background-color: var(--purple-100);
-  color: white;
+
+.form p::selection, .form label::selection, .form input::selection {
+  background-color: var(--purple-200);
+  color: var(--white);
 }
 
 
-input {
+.form input {
   border: 1px solid var(--purple);
   border-radius: 10px;
   font-size: large;
@@ -23,21 +24,8 @@ input {
   width: 75vw;
 }
 
-button {
-  align-self: center;
-  background-color: var(--purple);
-  border: none;
-  border-radius: 10px;
-  color: white;
-  cursor: pointer;
-  font-weight: 600;
-  margin: 8px 0;
-  padding: 14px 20px;
+.form button {
   width: 50vw;
-}
-
-button:hover {
-  background-color: var(--purple-100);
 }
 
 .validations {

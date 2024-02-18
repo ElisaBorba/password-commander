@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import { FormValuesType } from '../types/types';
+import styles from './FormResult.module.css';
+import closeEye from '../imgs/closeEye.png';
+import openEye from '../imgs/openEye.png';
 
 type FormResultProps = {
   formValuesSubmitted: FormValuesType[];
@@ -12,16 +15,15 @@ function FormResult({ formValuesSubmitted, handleDelete }: FormResultProps) {
   };
 
   const [hidePassword, setHidePassword] = useState(false);
-
   const handleChange = () => {
     setHidePassword(!hidePassword);
   };
 
   return (
     <div>
-      {formValuesSubmitted.length > 0 && (
-        <div>
-          <label htmlFor="hidePasswords">
+      <div className={ styles.checkbox }>
+        {formValuesSubmitted.length > 0 && (
+          <label className={ styles.note } htmlFor="hidePasswords">
             Esconder senhas
             <input
               type="checkbox"
@@ -29,27 +31,37 @@ function FormResult({ formValuesSubmitted, handleDelete }: FormResultProps) {
               checked={ hidePassword }
               onChange={ handleChange }
             />
+            <img
+              src={ hidePassword ? closeEye : openEye }
+              alt="hidePasswords"
+            />
           </label>
-        </div>
-      )}
+        )}
+      </div>
 
-      {formValuesSubmitted.map((formValue) => {
-        const { id, serviceName, login, password, url } = formValue;
-        return (
-          <div key={ id }>
-            <p>
-              <a href={ url }>{serviceName}</a>
-            </p>
-            <p>{login}</p>
-            <p>{hidePassword ? '******' : password}</p>
-            <button data-testid="remove-btn" onClick={ () => handleRemove(String(id)) }>
-              Remover senha
-            </button>
-          </div>
-        );
-      })}
+      <div className={ styles.passwordsContainer }>
+        {formValuesSubmitted.map((formValue) => {
+          const { id, serviceName, login, password, url } = formValue;
+          return (
+            <div className={ styles.passwordsCards } key={ id }>
+              <p>
+                <a href={ url }>{serviceName}</a>
+              </p>
+              <p>{login}</p>
+              <p>{hidePassword ? '******' : password}</p>
+              <button data-testid="remove-btn" onClick={ () => handleRemove(String(id)) }>
+                Remover senha
+              </button>
+            </div>
+          );
+        })}
 
-      {formValuesSubmitted.length === 0 && <p>Nenhuma senha cadastrada 😞</p>}
+        {formValuesSubmitted.length === 0 && (
+          <p className={ styles.note }>
+            Nenhuma senha cadastrada 😞
+          </p>
+        )}
+      </div>
     </div>
   );
 }

@@ -56,7 +56,7 @@ function App() {
   }
 
   return (
-    <div className="app-container">
+    <div className={ `app-container ${buttonClicked ? 'margin-top-small' : ''}` }>
       <header className={ `header ${buttonClicked ? 'header-background' : ''}` }>
         {' '}
         <Title />
