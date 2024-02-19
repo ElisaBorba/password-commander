@@ -3,6 +3,7 @@ import { FormValuesType } from '../types/types';
 import styles from './FormResult.module.css';
 import closeEye from '../imgs/closeEye.png';
 import openEye from '../imgs/openEye.png';
+import linkIcon from '../imgs/link-img.svg';
 
 type FormResultProps = {
   formValuesSubmitted: FormValuesType[];
@@ -45,7 +46,13 @@ function FormResult({ formValuesSubmitted, handleDelete }: FormResultProps) {
           return (
             <div className={ styles.passwordsCards } key={ id }>
               <p>
-                <a href={ url }>{serviceName}</a>
+                <img
+                  src={ linkIcon }
+                  alt={ linkIcon }
+                />
+                <a href={ url }>
+                  {serviceName}
+                </a>
               </p>
               <p>{login}</p>
               <p>{hidePassword ? '******' : password}</p>

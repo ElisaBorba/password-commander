@@ -54,6 +54,11 @@
   text-decoration: none;
 }
 
+.passwordsCards img {
+  height: 20px;
+  width: 20px;
+}
+
 .note::selection, .passwordsCards p::selection, .passwordsCards a::selection {
   background-color: var(--purple-200);
   color: var(--white);
